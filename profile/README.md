@@ -127,7 +127,14 @@ feature/user-auth → dev → test → release
 #### Environment Deployments
 - **Development**: Auto-deploy from `dev` branch
 - **Staging**: Auto-deploy from `test` branch  
-- **Production**: Auto-deploy from `release` branch
+- **Production**: **Manual approval required** from `release` branch
+
+#### Production Deployment Security
+🔒 **Manual Approval Process:**
+- Must trigger via GitHub Actions "Run workflow"
+- Requires explicit confirmation text: "DEPLOY"
+- Environment protection rules enforced
+- Full audit trail maintained
 
 ### Commit Conventions
 ```
