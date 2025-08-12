@@ -108,10 +108,26 @@ Our platform follows **Clean Architecture** principles with **Domain-Driven Desi
 - **Security-first** approach with OWASP compliance
 
 ### Branching Strategy
-- `main` - Production-ready code
-- `develop` - Integration branch for features
-- `feature/*` - Feature development branches
-- `hotfix/*` - Production hotfixes
+We follow **GitFlow** with environment-specific branches:
+
+- `release` - **Production environment** - Stable, production-ready code
+- `test` - **Staging/UAT environment** - Release candidates and final testing
+- `dev` - **Development environment** - Integration branch for ongoing development
+- `feature/*` - **Feature development** - Individual feature branches (merge to `dev`)
+- `hotfix/*` - **Production hotfixes** - Critical fixes (merge to `release` and `dev`)
+- `bugfix/*` - **Bug fixes** - Non-critical fixes (merge to `dev`)
+
+#### Branch Flow
+```
+feature/user-auth → dev → test → release
+                     ↑     ↑       ↑
+                   merge  deploy  deploy
+```
+
+#### Environment Deployments
+- **Development**: Auto-deploy from `dev` branch
+- **Staging**: Auto-deploy from `test` branch  
+- **Production**: Auto-deploy from `release` branch
 
 ### Commit Conventions
 ```
